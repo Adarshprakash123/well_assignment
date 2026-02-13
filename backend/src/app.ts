@@ -7,7 +7,8 @@ import askRoutes from "./routes/askRoutes.js";
 
 const app = express();
 
-const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
+// Strip trailing slash to avoid CORS mismatch
+const frontendUrl = (process.env.FRONTEND_URL || "http://localhost:3000").replace(/\/+$/, "");
 
 app.use(cors({ origin: frontendUrl, credentials: true }));
 app.use(express.json());
